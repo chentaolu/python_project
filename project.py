@@ -21,12 +21,12 @@ tempFrame = {"year":[], "total":[], "-15":[], "15~19":[], "20~24":[],
              "50~54":[], "55~59":[], "60~64":[], "65+":[]}
 temp = pd.DataFrame(tempFrame)
 
-marriedIndex = list(marriedData.columns)
-temp['year'] = marriedData[marriedIndex[0]]
-temp['total'] = marriedData[marriedIndex[1]]
-for i in range(2, int((len(marriedIndex) + 1)/2)):
+marriedColumns = list(marriedData.columns)
+temp['year'] = marriedData[marriedColumns[0]]
+temp['total'] = marriedData[marriedColumns[1]]
+for i in range(2, int((len(marriedColumns) + 1)/2)):
     temp[list(tempFrame.keys())[i]] = \
-    marriedData[marriedIndex[i]] + marriedData[marriedIndex[i + 13]]
+    marriedData[marriedColumns[i]] + marriedData[marriedColumns[i + 13]]
 temp['year'] = temp['year'].astype(np.int64)
 marriedData = temp
 marriedData = marriedData.set_index('year')
